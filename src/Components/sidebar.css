@@ -1,0 +1,76 @@
+.sidenav {
+    height: 100%;
+    width: 256px;
+    z-index: 10;
+    background: #424242;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    bottom: 0;
+    padding-top: 7px;
+    position: fixed;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    top: 0;
+}
+.logo {
+    background: #fff;
+    box-shadow: 0px 5px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 7px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 4px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.logo img {
+    width: 100%;
+}
+.menu {
+    margin-top: 10px;
+    padding: 0;
+}
+
+#sidebar-menu>ul>li>a.active { 
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#sidebar-menu>ul>li>a {
+    color: #fff;
+    display: block;
+    padding: 10px 15px;
+    font-size: .875rem;
+    position: relative;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+
+#sidebar-menu>ul>li>a i {
+    display: inline-block;
+    line-height: 1.0625rem;
+    margin: 0 10px 0 3px;
+    text-align: center;
+    /*vertical-align: middle;*/
+    width: 20px;
+}
+
+#sidebar-menu>ul>li>a:active,
+#sidebar-menu>ul>li>a:focus,
+#sidebar-menu>ul>li>a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 7px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 750px) {
+    .sidenav {
+        display: none;
+    }
+}
+
+/* .media {
+    background-color: #151515;
+} */
