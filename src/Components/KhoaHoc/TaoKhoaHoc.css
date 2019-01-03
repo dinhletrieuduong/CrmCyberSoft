@@ -1,6 +1,17 @@
-#calendar{
-    justify-content: center;
-}
 .submit{
-    margin-top: 50px;
+    margin-top: 10px;
+}
+#calendar>span,
+#calendar>span>input{
+    width: 100%;
+    height: calc(2.25rem + 2px);
+}
+#calendar>span>input,
+#calendar>span>input:focus{
+    border: 1px solid #ced4da;
+    padding: .375rem .75rem;
+    color: #495057;
+}
+#calendar>span>.p-datepicker{
+    top: auto !important;
 }

@@ -15,11 +15,11 @@ export default class KhoaHoc extends Component {
         this.listMentor = [];
         this.listHocVien = [];
     }
-    render() {
-        return (
-        <div>
+    // render() {
+    //     return (
+    //     <div>
             
-        </div>
-        )
-    }
+    //     </div>
+    //     )
+    // }
 }
