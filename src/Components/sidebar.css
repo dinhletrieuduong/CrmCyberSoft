@@ -20,9 +20,12 @@
 .logo img {
     width: 100%;
 }
-.menu {
+.sidebar {
     margin-top: 10px;
     padding: 0;
+}
+.nav{
+    display: block !important;
 }
 @media screen and (max-height: 450px) {
     .sidenav {
@@ -34,23 +37,40 @@
         display: none;
     }
 }
+.header-sidebar{
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    list-style: none;
+    line-height: 48px;
+    font-family: Barlow;
+    font-weight: 500;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+@media (min-width: 600px){
+    .header-sidebar {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+.menu>li>a{
+    border: 0px;
+    background-color: #424242;
+    color: #ffffff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: none;
+    font-size: 0.875rem;
+}
 
-body .p-panelmenu .p-panelmenu-header:not(.p-highlight)>a:hover {
+.menu>li>a:hover {
     outline: 0 none ;
     background-color: rgba(255, 255, 255, 0.1) !important;
     text-decoration: none !important;
     border: 0px !important;
     box-shadow: none !important;
     color: #fff !important;
-}
-body .p-panelmenu .p-panelmenu-header.p-highlight>a:hover,
-body .p-panelmenu .p-panelmenu-header.p-highlight>a:active,
-body .p-panelmenu .p-panelmenu-header.p-highlight>a:focus,
-body .p-panelmenu .p-panelmenu-header>a:focus {
-    outline: 0 none;
-    border: 0px !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    box-shadow: none !important;
 }
 body .p-panelmenu .p-panelmenu-header.p-highlight>a,
 body .p-panelmenu .p-panelmenu-header>a

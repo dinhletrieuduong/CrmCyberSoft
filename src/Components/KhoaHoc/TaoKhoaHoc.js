@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-//import KhoaHoc from './KhoaHoc';
-import {Link} from 'react-router-dom';
 import {Calendar} from 'primereact/calendar';
-
-import { Form, Button, Col, InputGroup } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 import './TaoKhoaHoc.css';
-
-export default class TaoKhoaHoc extends Component {
+import {connect} from 'react-redux';
+class TaoKhoaHoc extends Component {
   constructor() {
     super();
     let today = new Date();
@@ -29,9 +26,11 @@ export default class TaoKhoaHoc extends Component {
       date: null,
       minDate: minDate,
       maxDate: maxDate,
-      invalidDates: [today]
+      invalidDates: [today],
+      width: 0,
+      height: 0
     };
-
+  this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.dateTemplate = this.dateTemplate.bind(this);
   }
 
@@ -52,12 +51,28 @@ export default class TaoKhoaHoc extends Component {
     }
     else
       return date.day;
-    }
-  
+  }
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  }
   render() {
+    const style = {
+      marginLeft: (this.props.sttSideBar && this.state.width > 750 ? 280 : 20) + 'px'
+    };
     const { validated } = this.state;
     return (
-      <Form noValidate validated={validated} onSubmit={e => this.handleSubmit(e)} id="TaoKhoaHoc">
+      <Form noValidate validated={validated} onSubmit={e => this.handleSubmit(e)} id="TaoKhoaHoc" className="main" style={style}>
         <Form.Row>
           <Form.Group as={Col} md="6" controlId="tenKhoaHoc">
             <Form.Label>Tên Khóa Học</Form.Label>
@@ -112,3 +127,12 @@ export default class TaoKhoaHoc extends Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    sttSideBar: state.sttSideBar,
+    showTitle: state.showTitle,
+    title: state.title
+  }
+};
+
+export default connect(mapStateToProps)(TaoKhoaHoc);
