@@ -28,7 +28,7 @@ class SideBar extends Component {
                         <ul className="nav menu">
                            <li className="nav-item">
                               <NavLink to="/danhsachkhoahoc" className="nav-link active" onClick={() => this.changeTitle(0)}>
-                                 <span>
+                                 <span className="icon">
                                     <i className="fa fa-list" aria-hidden="true"></i>
                                  </span>
                                  <span>
@@ -37,22 +37,50 @@ class SideBar extends Component {
                               </NavLink>
                            </li>
                            <li className="nav-item">
-                              <NavLink to="/taokhoahoc" className="nav-link" onClick={() => this.changeTitle(1)}>Thêm Khóa Học</NavLink>
-                           </li>
-                           <li className="nav-item">
-                              <NavLink to="/chinhsuakhoahoc" className="nav-link" onClick={() => this.changeTitle(2)}>Chỉnh Sửa</NavLink>
+                              <NavLink to="/taokhoahoc" className="nav-link" onClick={() => this.changeTitle(1)}>
+                                 <span className="icon">
+                                    <i className="fas fa-plus"></i>
+                                 </span>
+                                 <span>
+                                    Thêm Khóa Học
+                                 </span>
+                              </NavLink>
                            </li>
                         </ul>
                      </li>
                      <li className="nav-item">
                      <span className="nav-item header-sidebar" href="#">Quản Lý User</span>
                         <ul className="nav menu">
-                            <li className="nav-item">
-                              <NavLink to="#" className="nav-link">Thêm User</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="#" className="nav-link">Sửa</NavLink>
-                            </li>
+                           <li className="nav-item">
+                              <NavLink to="#" className="nav-link">
+                                 <span className="icon">
+                                    <i className="fas fa-users"></i>
+                                 </span>
+                                 <span>
+                                    Danh Sách User
+                                 </span>
+                              </NavLink>
+                           </li>
+                           <li className="nav-item">
+                              <NavLink to="#" className="nav-link">
+                                 <span className="icon">
+                                    <i className="fas fa-user-plus"></i>
+                                 </span>
+                                 <span>
+                                    Thêm User
+                                 </span>
+                              </NavLink>
+                           </li>
+                           <li className="nav-item">
+                                <NavLink to="#" className="nav-link">
+                                    <span className="icon">
+                                       <i className="fas fa-user-edit"></i>
+                                    </span>
+                                    <span>
+                                       Sửa thông tin User
+                                    </span>
+                                </NavLink>
+                           </li>
                         </ul>
                      </li>
                   </ul>

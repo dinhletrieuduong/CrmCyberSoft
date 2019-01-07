@@ -11,7 +11,7 @@ class Url extends Component {
                 <Route exact path="/" component={DanhSachKhoaHoc}/>
                 <Route exact path="/danhsachkhoahoc" component={DanhSachKhoaHoc}/>
                 <Route exact path="/taokhoahoc" component={TaoKhoaHoc}/>
-                <Route exact path="/chinhsuakhoahoc" component={ChinhSuaKhoaHoc}/>
+                <Route exact path="/chinhsuakhoahoc/:slug.:id" component={ChinhSuaKhoaHoc}/>
             </div>
         );
     }

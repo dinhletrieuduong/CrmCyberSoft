@@ -72,6 +72,12 @@
     box-shadow: none !important;
     color: #fff !important;
 }
+
+.icon{
+    padding-left: 0;
+    padding-right: 16px;
+}
+
 body .p-panelmenu .p-panelmenu-header.p-highlight>a,
 body .p-panelmenu .p-panelmenu-header>a
  {

@@ -3,7 +3,9 @@ var redux = require('redux');
 const CrmState = {
     sttSideBar: true,
     title: ["Danh Sách Khóa Học", "Tạo Khóa Học", "Chỉnh Sửa"],
-    showTitle: 0
+    showTitle: 0,
+    ChinhSuaSTT: 0,
+    khoaHoc: {}
 }
 const reducer = (state = CrmState, action) => {
     switch (action.type) {
@@ -14,7 +16,7 @@ const reducer = (state = CrmState, action) => {
         case "CHANGE_TITLE_1":
             return {...state, showTitle: 1};
         case "CHANGE_TITLE_2":
-            return {...state, showTitle: 2};
+            return {...state, showTitle: 2, khoaHoc: {...action.obj}};
         default:
             return state;
     }

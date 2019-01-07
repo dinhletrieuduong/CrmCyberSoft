@@ -26,11 +26,8 @@ class TaoKhoaHoc extends Component {
       date: null,
       minDate: minDate,
       maxDate: maxDate,
-      invalidDates: [today],
-      width: 0,
-      height: 0
+      invalidDates: [today]
     };
-  this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.dateTemplate = this.dateTemplate.bind(this);
   }
 
@@ -52,29 +49,15 @@ class TaoKhoaHoc extends Component {
     else
       return date.day;
   }
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions() {
-    this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-  }
   render() {
     const style = {
-      marginLeft: (this.props.sttSideBar && this.state.width > 750 ? 280 : 20) + 'px'
+      marginLeft: (this.props.sttSideBar ? 270 : 15) + 'px'
     };
     const { validated } = this.state;
     return (
       <Form noValidate validated={validated} onSubmit={e => this.handleSubmit(e)} id="TaoKhoaHoc" className="main" style={style}>
         <Form.Row>
-          <Form.Group as={Col} md="6" controlId="tenKhoaHoc">
+          <Form.Group as={Col} md="4" controlId="tenKhoaHoc">
             <Form.Label>Tên Khóa Học</Form.Label>
             <Form.Control required type="text" placeholder="Nhập Tên Khóa Học"/>
             <Form.Control.Feedback type="invalid">
@@ -82,14 +65,14 @@ class TaoKhoaHoc extends Component {
               </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" controlId="date">
+          <Form.Group as={Col} md="4" controlId="date">
             <Form.Label>Ngày Tạo</Form.Label>
             <div id="calendar">
               <Calendar value={this.state.date} onChange={(e) => this.setState({date: e.value})} showButtonBar={true} placeholder="Chọn ngày tạo"/>
             </div>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" controlId="hocPhi">
+          <Form.Group as={Col} md="4" controlId="hocPhi">
             <Form.Label>Học Phí</Form.Label>
             <Form.Control required type="number" placeholder="Nhập Học Phí"/>
             <Form.Control.Feedback type="invalid">
@@ -97,7 +80,7 @@ class TaoKhoaHoc extends Component {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" controlId="soLuong">
+          <Form.Group as={Col} md="4" controlId="soLuong">
             <Form.Label>Số Lượng</Form.Label>
             <Form.Control type="number" placeholder="Nhập Số Lượng" required />
             <Form.Control.Feedback type="invalid">
@@ -105,7 +88,7 @@ class TaoKhoaHoc extends Component {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" controlId="startTime">
+          <Form.Group as={Col} md="4" controlId="startTime">
             <Form.Label>Thời Gian Bắt Đầu</Form.Label>
             <Form.Control type="text" placeholder="Thời gian bắt đầu" required />
             <Form.Control.Feedback type="invalid">
@@ -113,14 +96,34 @@ class TaoKhoaHoc extends Component {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" controlId="endTime">
+          <Form.Group as={Col} md="4" controlId="endTime">
             <Form.Label>Thời Gian Kết Thúc</Form.Label>
             <Form.Control type="text" placeholder="Thời gian kết thúc" required />
             <Form.Control.Feedback type="invalid">
               Vui lòng nhập thời gian kết thúc.
             </Form.Control.Feedback>
           </Form.Group>
-
+          <Form.Group as={Col} md="4" controlId="endTime">
+            <Form.Label>Danh Sách Giảng Viên</Form.Label>
+            <Form.Control type="text" placeholder="Danh sách giảng viên" required></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Vui lòng nhập thông tin.
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" controlId="endTime">
+            <Form.Label>Danh Sách Mentor</Form.Label>
+            <Form.Control type="text" placeholder="Danh sách mentor" required></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Vui lòng nhập thông tin.
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" controlId="endTime">
+            <Form.Label>Danh Sách Học Viên</Form.Label>
+            <Form.Control type="text" placeholder="Danh sách học viên" required></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Vui lòng nhập thông tin.
+            </Form.Control.Feedback>
+          </Form.Group>
           <Button type="submit" className="btn btn-success btn-md submit">Tạo Khóa Học</Button>
         </Form.Row>
       </Form>

@@ -6,10 +6,10 @@ import SideBar from './Components/sidebar';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import Url from './router/url';
 import {
   BrowserRouter as Router
 } from 'react-router-dom';
-import Url from './router/url';
 
 import { connect } from "react-redux";
 class App extends Component {

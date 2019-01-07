@@ -6,11 +6,11 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Header extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             width: 0,
-            height: 0
+            height: 0,
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
@@ -32,6 +32,20 @@ class Header extends Component {
             height: window.innerHeight
         });
     }
+
+    showedTitle = () => {
+        if (window.location.pathname === "" || window.location.pathname === "/" || window.location.pathname === "/danhsachkhoahoc") {
+            return <h2>Danh Sách Khóa Học</h2>;
+        }
+        if (window.location.pathname === "/taokhoahoc"){
+            return <h2>Tạo Khóa Học</h2>;
+        }
+        if (window.location.pathname.includes("chinhsuakhoahoc")) {
+            console.log(window.location.pathname.includes("chinhsuakhoahoc"));
+            console.log(window.location.pathname.indexOf("chinhsuakhoahoc"));
+            return <h2>Chỉnh Sửa Khóa Học</h2>;
+        }
+    }
     render () {
         const styleHead = {
             marginLeft: (this.props.sttSideBar && this.state.width > 750 ? 256 : 0) + 'px'
@@ -40,7 +54,7 @@ class Header extends Component {
             <nav className=" navbar navbar-expand-sm fixed-top" style={styleHead}>
                 <button className="btn btn-outline-secondary btn-lg btn-sidebar" onClick={() => this.changeSttSideBar()}>☰</button>
                 <div className="mr-auto title">
-                    <h4>{this.props.title[this.props.showTitle]}</h4>
+                    {this.showedTitle()}
                 </div>
                 <div className="mr-1 mb-0 mb-lg-0">
                     <button className="btn btn-outline-secondary btn-lg btn-sidebar">
@@ -70,7 +84,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         sttSideBar: state.sttSideBar,
         showTitle: state.showTitle,
-        title: state.title
+        title: state.title,
+        ChinhSuaSTT: state.ChinhSuaSTT
     }
 }
 export default connect(mapStateToProps)(Header)

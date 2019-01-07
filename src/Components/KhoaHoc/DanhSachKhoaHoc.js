@@ -3,65 +3,84 @@ import { KhoaHocService } from '../../service/KhoaHocService';
 
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
-import {Button} from 'primereact/button';
 import { connect } from 'react-redux';
-import { StyleSheet, css } from 'aphrodite/no-important';
+import { NavLink } from 'react-router-dom';
+import { StyleSheet, css } from 'aphrodite';
 
 class DanhSachKhoaHoc extends Component {
   constructor() {
     super();
     this.state = {
       khoaHoc: [],
-      width: 0,
-      height: 0
+      editKey: '',
+      loading: true,
+      first: 0,
+      rows: 10,
+      totalRecords: 0
     };
     this.khoaHocService = new KhoaHocService();
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    
+    this.onPage = this.onPage.bind(this);
   }
   componentDidMount() {
-    this.khoaHocService.getInfo()
-      .then((data) => 
-      {
-        this.setState({khoaHoc: data});
+    setTimeout(() => {
+      this.khoaHocService.getInfo().then((data) => {
+        this.datasource = data;
+        this.setState({
+          khoaHoc: data,
+          totalRecords: data.length,
+          loading: false
+        });
       });
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
+    }, 1000);
   }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions() {
+  onPage(event) {
     this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight
+      loading: true
+    });
+    setTimeout(() => {
+      const startIndex = event.first;
+      const endIndex = event.first + this.state.rows;
+      this.setState({
+        first: startIndex,
+        khoaHoc: this.datasource.slice(startIndex, endIndex),
+        loading: false
+      });
+    }, 250);
+  }
+  
+  handleClick = (event, num) => {
+    event.preventDefault();
+    var {dispatch} = this.props;
+    dispatch({
+      type: "CHANGE_TITLE_" + num,
     });
   }
   actionTemplate(rowData, column) {
-    return <div>
-      <Button type="button" icon="pi pi-pencil" className="p-button-warning"></Button>
-    </div>;
+    return (
+      <NavLink to={"/chinhsuakhoahoc/" + rowData.TenKhoaHoc + "." + rowData._id} className="btn-warning btn" onClick={(e) => {this.handleClick(e, 2)}}>
+        <i className="far fa-edit" style={{color: '#fff'}}></i>
+      </NavLink>
+    );
   }
   render() {
-    var header = <div className="p-clearfix" style={{'lineHeight':'1.87em'}}>Danh Sách Khóa Học<Button icon="pi pi-refresh" style={{'float':'right'}}/></div>;
-    var footer = "Hiện có " + this.state.khoaHoc.length + ' khóa học';
+    var header = <div className="p-clearfix" style={{'lineHeight':'1.87em'}}>Danh Sách Khóa Học</div>;
     const style = {
-      marginLeft: (this.props.sttSideBar && this.state.width > 750 ? 280: 20) + 'px'
+      marginLeft: (this.props.sttSideBar ? 270: 15) + 'px'
     };
     return (
       <div className={css(styles.main, styles.td)} style={style}>
         <div className="content-section implementation">
-          <DataTable value={this.state.khoaHoc} responsive={true} header={header} footer={footer}>
+          <DataTable value={this.state.khoaHoc} responsive={true} header={header} paginator={true} rows={this.state.rows} totalRecords={this.state.totalRecords}
+                        lazy={true} first={this.state.first} onPage={this.onPage} loading={this.state.loading}>
             <Column field="TenKhoaHoc" header="Khóa học"/>
             <Column field="SoLuong" header="Số lượng"/>
             <Column field="HocPhi" header="Học phí"/>
             <Column field="NgayBatDau" header="Ngày bắt đầu" />
             <Column field="ThoiGianHoc.BatDau" header="Thời gian bắt đầu"/>
-            <Column field="ThoiGianHoc.KetThuc" header="Thời gian kết thúc" />
-            <Column field="DanhSachGiangVien" header="Danh sách giảng viên" />
-            <Column field="DanhSachHocVien" header="Danh sách học viên" />
-            <Column field="DanhSachMentor" header="Danh sách mentor" />
+            <Column field="ThoiGianHoc.KetThuc" header="Thời gian kết thúc"/>
+            <Column field="DanhSachGiangVien" header="Danh sách giảng viên"/>
+            <Column field="DanhSachHocVien" header="Danh sách học viên"/>
+            <Column field="DanhSachMentor" header="Danh sách mentor"/>
             <Column body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
           </DataTable>
         </div>
@@ -71,7 +90,7 @@ class DanhSachKhoaHoc extends Component {
 }
 const styles = StyleSheet.create({
   main:{
-    marginLeft: '280px',
+    marginLeft: '270px',
     marginTop: '100px',
     marginRight: '15px',
     '@media (max-width: 750px)': {
@@ -79,7 +98,7 @@ const styles = StyleSheet.create({
     }
   },
   td :{
-    wordBreak :'break-all'
+    wordBreak: 'break-word'
   }
 });
 const mapStateToProps = (state, ownProps) => {

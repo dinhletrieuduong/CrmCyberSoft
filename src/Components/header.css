@@ -6,7 +6,7 @@
     0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
     -webkit-box-shadow: 1px 5px 3px 0 rgba(34, 39, 46, 0.22);
     box-shadow: 1px 5px 3px 0 rgba(34, 39, 46, 0.22);
-    margin-left: 256px;
+    height: 85px;
 }
 
 a {
@@ -45,7 +45,8 @@ a {
     border-radius: 50%;
 }
 
-.title h4 {
-    margin-top: 0.4rem;
-    margin-left: 0.4rem;
+.title h2{
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    font-size: 1.3125rem;
 }
