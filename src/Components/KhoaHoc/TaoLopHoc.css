@@ -1,0 +1,29 @@
+
+    /*height: calc(2.25rem + 2px);*/
+
+
+.main {
+    margin-top: 120px;
+}
+
+form input {
+    width: 100%;
+}
+
+#calendar>span,
+#calendar>span>input {
+    width: 100%;
+}
+
+#calendar>span>.p-datepicker,
+body .p-multiselect-panel {
+    top: auto !important;
+}
+
+body .p-multiselect .p-multiselect-label {
+    height: calc(1.45rem + 2px);
+}
+
+body .p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container {
+    width: 81% !important;
+}

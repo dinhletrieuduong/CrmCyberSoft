@@ -1,22 +1,14 @@
 var redux = require('redux');
 
 const CrmState = {
-    sttSideBar: true,
-    title: ["Danh Sách Khóa Học", "Tạo Khóa Học", "Chỉnh Sửa"],
-    showTitle: 0,
-    ChinhSuaSTT: 0,
-    khoaHoc: {}
+    logined: true,
 }
 const reducer = (state = CrmState, action) => {
     switch (action.type) {
-        case "CHANGE_STT_SIDEBAR":
-            return {...state, sttSideBar: !state.sttSideBar};
-        case "CHANGE_TITLE_0":
-            return {...state, showTitle: 0};
-        case "CHANGE_TITLE_1":
-            return {...state, showTitle: 1};
-        case "CHANGE_TITLE_2":
-            return {...state, showTitle: 2, khoaHoc: {...action.obj}};
+        case "LOGIN":
+            return {...state, logined: true};
+        case "LOGOUT":
+            return {...state, logined: false};
         default:
             return state;
     }

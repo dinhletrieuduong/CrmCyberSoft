@@ -1,0 +1,7 @@
+.p-float-label input:focus~.label-ma-hoc-vien {
+    top: -0.75em;
+    font-size: 14px !important;
+}
+.label-ma-hoc-vien {
+    font-size: initial !important;
+}
